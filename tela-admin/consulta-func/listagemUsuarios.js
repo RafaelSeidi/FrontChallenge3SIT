@@ -35,10 +35,36 @@ function construirTabela(json){
                         <td>${json[i].telefone}</td>
                         <td>
                             <div class="box-op">
-                                <a href="" class="custom-icon"><i class="fi fi-bs-cross"></i></a>
+                                <a href="" class="custom-icon" onclick="removerUsuario(${json[i].usuarioId})"><i class="fi fi-bs-cross"></i></a>
                             </div>
                         </td>
                    </tr>`
         table.innerHTML += row;
+    }
+}
+
+function removerUsuario(usuarioId) {
+
+    if (confirm(`Você realmente deseja remover o usuário com ID ${usuarioId}?`)) {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify(usuarioId);
+
+        const requestOptions = {
+            headers: myHeaders,
+            body: raw,
+            method: "DELETE",
+            redirect: "follow"
+        };
+
+        fetch("http://localhost:8094/usuario/remover", requestOptions)
+            .then((response) => response.json())
+            .then((json) => {
+                if (json.length !== 0) {
+                    console.log(json);
+                }
+            })
+            .catch((error) => console.error(error));
     }
 }
