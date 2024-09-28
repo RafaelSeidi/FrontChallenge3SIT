@@ -20,6 +20,9 @@
     <link rel='stylesheet'
         href='https://cdn-uicons.flaticon.com/2.5.1/uicons-bold-straight/css/uicons-bold-straight.css'>
 
+    <!-- js -->
+    <script src="./cadastroTreinamento.js"></script>
+
 </head>
 
 <body>
@@ -44,26 +47,26 @@
             <!-- box input -->
             <div class="box-input">
                 <label for="" class="label">Nome do treinamento: </label>
-                <input type="text" name="" id="" class="input" required>
+                <input type="text" name="" id="nome" class="input" required>
             </div>
             
             <!-- box input -->
             <div class="box-input">
                 <label for="" class="label">Duração (Horas): </label>
-                <input type="number" name="" id="" class="input" required>
+                <input type="number" name="" id="horas" class="input" required>
             </div>
            
             <!-- box input -->
             <div class="box-input">
                 <label for="" class="label">Data de lançamento: </label>
-                <input type="date" name="" id="" class="input" required>
+                <input type="date" name="" id="dataLancamento" class="input" required>
             </div>
             
             <!-- box input -->
             <div class="box-input">
                 <label for="" class="label">Relevância: </label>
-                <select class="input">
-                    <option value="opcional" disabled selected class="option">Selecione uma opção</option>
+                <select class="input" id="relevancia" required>
+                    <option disabled selected class="option">Selecione uma opção</option>
                     <option value="opcional" class="option">Opcional</option>
                     <option value="obrigatorio" class="option">Obrigatório</option>
                 </select>
@@ -72,11 +75,11 @@
             <!-- box input -->
             <div class="box-input-textarea">
                 <label for="" class="label">Descrição: </label>
-                <textarea class="textarea" aria-label="With textarea" required></textarea>
+                <textarea class="textarea" aria-label="With textarea" required id="descricao"></textarea>
             </div>
             
 
-            <button class="btn-form" type="submit">Adicionar</button>
+            <button class="btn-form" type="submit" onclick="cadastrar(); return false;">Adicionar</button>
         </form>
 
     </div>
