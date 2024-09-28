@@ -30,6 +30,8 @@ function logar() {
             .then((response) => response.text())
             .then((result) => {
                 if (result) {
+                    var json = JSON.parse(result);
+                    sessionStorage.setItem("id", json.administradorId);
                     location.href = '../tela-admin/index.html';
                 } else {
                     alert('Login ou senha inválidos!');
@@ -41,6 +43,8 @@ function logar() {
             .then((response) => response.text())
             .then((result) => {
                 if (result) {
+                    var json = JSON.parse(result);
+                    sessionStorage.setItem("id", json.usuarioId);
                     location.href = '../tela-funcionario/index.html';
                 } else {
                     alert('Login ou senha inválidos!');

@@ -1,6 +1,37 @@
+
+var idAdmin = sessionStorage.getItem("id")
+
+console.log(idAdmin);
+
+function removerAdmin(adminId) {
+
+    if (confirm(`Você realmente deseja remover sua conta?`)) {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify(adminId);
+
+        const requestOptions = {
+            headers: myHeaders,
+            body: raw,
+            method: "DELETE",
+            redirect: "follow"
+        };
+
+        fetch("http://localhost:8094/administrador/remover", requestOptions)
+            .then((response) => response.json())
+            .then((json) => {
+                if (json.length !== 0) {
+                    console.log(json);
+                    location.href = '../../tela-delete/index.html';
+                }
+            })
+            .catch((error) => console.error(error));
+    }
+}
+
 function deletar() {
-    console.log("Deletar");
-    location.href = '../../tela-delete/index.html';
+    removerAdmin(idAdmin);
 }
 
 function alteraEmail(){
