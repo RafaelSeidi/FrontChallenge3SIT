@@ -34,17 +34,53 @@ function deletar() {
     removerAdmin(idAdmin);
 }
 
+function alterarAtributo(i, idAdmin, data) {
+    endpoints = ["Email", "Telefone", "Senha"]
+
+    if (confirm(`Você realmente deseja alterar o atributo ${endpoints[i]}?`)) {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify({
+            "administradorId": idAdmin,
+            "dado": data
+        });
+
+        const requestOptions = {
+            headers: myHeaders,
+            body: raw,
+            method: "PUT",
+            redirect: "follow"
+        };
+
+        fetch(`http://localhost:8094/administrador/update${endpoints[i]}`, requestOptions)
+            .then((response) => response.text())
+            .then((result) => {
+                if (result) {
+                    console.log(result);
+                    alert(`${endpoints[i]} alterado com sucesso!`);
+                }
+            })
+            .catch((error) => console.error(error));
+    }
+
+}
+
 function alteraEmail(){
-    alert('Email alterado com sucesso!');
-    location.href = '../perfil-funcionario/index.html';
+    var email = document.getElementById('email');
+    alterarAtributo(0, idAdmin, email.value);
+    email.value = "";
+
 }
 
 function alteraTel(){
-    alert('Telefone alterado com sucesso!');
-    location.href = '../perfil-funcionario/index.html';
+    var telefone = document.getElementById('telefone');
+    alterarAtributo(1, idAdmin, telefone.value);
+    telefone.value = "";
 }
 
 function alteraSenha(){
-    alert('Senha alterado com sucesso!');
-    location.href = '../perfil-funcionario/index.html';
+    var senha = document.getElementById('senha');
+    alterarAtributo(2, idAdmin, senha.value);
+    senha.value = "";
 }
