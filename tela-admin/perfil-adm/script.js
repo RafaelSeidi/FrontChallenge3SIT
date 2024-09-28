@@ -68,19 +68,31 @@ function alterarAtributo(i, idAdmin, data) {
 
 function alteraEmail(){
     var email = document.getElementById('email');
-    alterarAtributo(0, idAdmin, email.value);
-    email.value = "";
+    if (email.value){
+        alterarAtributo(0, idAdmin, email.value);
+        email.value = "";
+    } else {
+        alert("Preencha o campo!");
+    }
 
 }
 
 function alteraTel(){
     var telefone = document.getElementById('telefone');
-    alterarAtributo(1, idAdmin, telefone.value);
-    telefone.value = "";
+    if(telefone.value) {
+        alterarAtributo(1, idAdmin, telefone.value);
+        telefone.value = "";
+    } else {
+        alert("Preencha o campo!");
+    }
 }
 
 function alteraSenha(){
     var senha = document.getElementById('senha');
-    alterarAtributo(2, idAdmin, senha.value);
-    senha.value = "";
+    if(senha.value){
+        alterarAtributo(2, idAdmin, senha.value);
+        senha.value = "";
+    } else {
+        alert("Preencha o campo!");
+    }
 }
